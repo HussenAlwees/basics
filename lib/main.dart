@@ -12,14 +12,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String? country;
+  bool status = false;
+  bool status2 = false;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" Switch :"),
+          title: const Text(" checkboxListTile :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
@@ -29,30 +30,25 @@ class _MyAppState extends State<MyApp> {
               Text(
                 "choose your country",
                 style: TextStyle(fontSize: 20),
-              ),
-              RadioListTile(
-                  tileColor: const Color.fromARGB(255, 128, 189, 217),
-                  activeColor: const Color.fromARGB(255, 243, 72, 33),
-                  contentPadding: EdgeInsets.all(20),
-                  title: Text("SYRIA"),
-                  value: "syria",
-                  groupValue: country,
+              ), //Text
+              CheckboxListTile(
+                  title: Text("Syria"),
+                  activeColor: Colors.cyan,
+                  checkColor: Colors.black,
+                  value: status,
                   onChanged: (val) {
                     setState(() {
-                      country = val;
+                      status = val!;
                     });
-                    print(val);
                   }),
-              RadioListTile(
-                  activeColor: Color.fromARGB(255, 26, 220, 159),
-                  title: Text("EGYPT"),
-                  value: "Egypt",
-                  groupValue: country,
+
+              CheckboxListTile(
+                  title: Text("Egypt"),
+                  value: status2,
                   onChanged: (val) {
                     setState(() {
-                      country = val;
+                      status2 = val!;
                     });
-                    print(val);
                   }),
             ],
           ), // column
