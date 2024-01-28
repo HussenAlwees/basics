@@ -1,6 +1,3 @@
-import 'dart:html';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,44 +11,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String written_text = "";
-  bool Print = false;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" features TextField :"),
+          title: const Text("TextFormField && Form :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (val) {
-                  setState(() {
-                    written_text = val;
-                  });
-                },
-              ), //TextFild
-              MaterialButton(
-                child: Text("print"),
-                color: Colors.blueAccent,
-                textColor: Colors.white,
-                onPressed: () {
-                  setState(() {
-                    Print = !Print;
-                  });
-                },
-              ),
-              if (Print == true)
-                Text(
-                  "You wrote : $written_text",
-                  style: TextStyle(fontSize: 20),
+          padding: const EdgeInsets.all(20.0),
+          child: Form(
+            key: formkey,
+            child: Column(
+              children: [
+                TextFormField(
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return "الحقل فارغ";
+                    }
+                    if (val.length > 10)
+                      return "لا يمكن أن تكون عدد الأحرف اكبر من 10";
+                  },
+                ), //TextFild
+                MaterialButton(
+                  child: Text("valid"),
+                  color: Colors.blueAccent,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    if (formkey.currentState!.validate()) {
+                      //check if the form is valid or not.
+                      print("valid");
+                    } else
+                      print("not valid");
+                  },
                 ),
-              if (Print == false) Text(""),
-            ],
-          ), //Column
+              ],
+            ), //Column
+          ), //Form
         ), //container
       ), //Scaffold
     ); //MaterialApp
