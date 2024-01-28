@@ -25,40 +25,19 @@ class _MyAppState extends State<MyApp> {
             children: [
               TextField(
                 decoration: InputDecoration(
-                  prefix: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                  icon: Icon(Icons.person),
                   hintText: "userName",
                   hintStyle: TextStyle(color: Colors.grey[400]),
                 ),
               ), //TextFild
-
-              const TextField(
+              TextField(
                 decoration: InputDecoration(
-                  prefixText: "Enter the name:",
-                  hintStyle: TextStyle(color: Colors.grey),
-                ), //InputDecoration
-              ), //TextFild
-              const TextField(
-                decoration: InputDecoration(
-                  suffix: Icon(Icons.turn_right),
-                  labelText: "this is labelText",
-                ), //InputDecoration
-              ), //TextFild
-
-              const TextField(
-                decoration: InputDecoration(
-                  suffixIcon: Icon(Icons.post_add),
-                  suffixIconColor: Colors.black,
-                  labelText: "write here",
-                  hintStyle: TextStyle(color: Colors.grey),
-                ), //InputDecoration
-              ), //TextFild
-
-              const TextField(
-                decoration: InputDecoration(
-                  icon: Icon(Icons.access_alarm),
-                  fillColor: Colors.blue,
-                  filled: true,
-                ), //InputDecoration
+                  border: UnderlineInputBorder(),
+                  icon: Icon(Icons.password),
+                  hintText: "password",
+                  hintStyle: TextStyle(color: Colors.grey[400]),
+                ),
               ), //TextFild
             ],
           ), //Column
