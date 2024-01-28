@@ -12,33 +12,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  TextEditingController username = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" TextField :"),
+          title: const Text(" features TextField :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
           child: Column(
             children: [
               TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  icon: Icon(Icons.person),
-                  hintText: "userName",
-                  hintStyle: TextStyle(color: Colors.grey[400]),
-                ),
+                controller: username,
               ), //TextFild
-              TextField(
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  icon: Icon(Icons.password),
-                  hintText: "password",
-                  hintStyle: TextStyle(color: Colors.grey[400]),
-                ),
-              ), //TextFild
+              MaterialButton(
+                  child: Text("press"),
+                  color: Colors.blueAccent,
+                  textColor: Colors.white,
+                  onPressed: () {
+                    print(username.text);
+                  }) //MaterialButton
             ],
           ), //Column
         ), //container
