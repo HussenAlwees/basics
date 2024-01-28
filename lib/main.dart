@@ -13,14 +13,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" ListTile in Card :"),
+          title: const Text(" Icon :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
           child: Icon(
-            Icons.baby_changing_station,
-            color: Colors.black,
-          ),
+            Icons.person,
+            color: Color.fromARGB(255, 18, 122, 202),
+            size: 200.5,
+          ), //Icon
         ), //Container
       ), //Scaffold
     ); //MaterialApp
