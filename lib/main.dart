@@ -17,32 +17,51 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" Stack :"),
+          title: const Text(" TextField :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
-          child: Stack(
-            alignment: Alignment.center,
+          child: Column(
             children: [
-              Container(
-                width: 300,
-                height: 300,
-                color: Colors.red,
-              ),
-              Container(
-                width: 200,
-                height: 200,
-                color: Color.fromARGB(255, 102, 223, 46),
-              ),
-              Positioned(
-                  left: 100,
-                  top: 100,
-                  child: Text(
-                    "Hussen",
-                    style: TextStyle(fontSize: 20.5),
-                  )),
+              TextField(
+                decoration: InputDecoration(
+                  prefix: Icon(Icons.person),
+                  hintText: "userName",
+                  hintStyle: TextStyle(color: Colors.grey[400]),
+                ),
+              ), //TextFild
+
+              const TextField(
+                decoration: InputDecoration(
+                  prefixText: "Enter the name:",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ), //InputDecoration
+              ), //TextFild
+              const TextField(
+                decoration: InputDecoration(
+                  suffix: Icon(Icons.turn_right),
+                  labelText: "this is labelText",
+                ), //InputDecoration
+              ), //TextFild
+
+              const TextField(
+                decoration: InputDecoration(
+                  suffixIcon: Icon(Icons.post_add),
+                  suffixIconColor: Colors.black,
+                  labelText: "write here",
+                  hintStyle: TextStyle(color: Colors.grey),
+                ), //InputDecoration
+              ), //TextFild
+
+              const TextField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.access_alarm),
+                  fillColor: Colors.blue,
+                  filled: true,
+                ), //InputDecoration
+              ), //TextFild
             ],
-          ), //Stack
+          ), //Column
         ), //container
       ), //Scaffold
     ); //MaterialApp
