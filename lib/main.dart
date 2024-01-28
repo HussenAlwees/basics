@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String written_text = "";
+  bool Print = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,11 +28,28 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               TextField(
-                maxLength: 10,
-                keyboardType: TextInputType.number,
-                maxLines: 3,
-                minLines: 1,
+                onChanged: (val) {
+                  setState(() {
+                    written_text = val;
+                  });
+                },
               ), //TextFild
+              MaterialButton(
+                child: Text("print"),
+                color: Colors.blueAccent,
+                textColor: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    Print = !Print;
+                  });
+                },
+              ),
+              if (Print == true)
+                Text(
+                  "You wrote : $written_text",
+                  style: TextStyle(fontSize: 20),
+                ),
+              if (Print == false) Text(""),
             ],
           ), //Column
         ), //container
