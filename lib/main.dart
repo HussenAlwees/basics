@@ -13,15 +13,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" Icon :"),
+          title: const Text(" Icon button :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
-          child: Icon(
-            Icons.person,
-            color: Color.fromARGB(255, 18, 122, 202),
-            size: 200.5,
-          ), //Icon
+          child: IconButton(
+            onPressed: () {
+              print("icon is pressed");
+            },
+            iconSize: 100.5,
+            icon: const Icon(
+              Icons.person,
+            ), //Icon
+          ), //IconButton
         ), //Container
       ), //Scaffold
     ); //MaterialApp
