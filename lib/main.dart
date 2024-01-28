@@ -12,47 +12,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool status = false;
-  bool status2 = false;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(" checkboxListTile :"),
+          title: const Text(" Stack :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
-          padding: EdgeInsets.all(10),
-          child: Column(
+          child: Stack(
+            alignment: Alignment.center,
             children: [
-              Text(
-                "choose your country",
-                style: TextStyle(fontSize: 20),
-              ), //Text
-              CheckboxListTile(
-                  title: Text("Syria"),
-                  activeColor: Colors.cyan,
-                  checkColor: Colors.black,
-                  value: status,
-                  onChanged: (val) {
-                    setState(() {
-                      status = val!;
-                    });
-                  }),
-
-              CheckboxListTile(
-                  title: Text("Egypt"),
-                  value: status2,
-                  onChanged: (val) {
-                    setState(() {
-                      status2 = val!;
-                    });
-                  }),
+              Container(
+                width: 300,
+                height: 300,
+                color: Colors.red,
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                color: Color.fromARGB(255, 102, 223, 46),
+              ),
+              Positioned(
+                  left: 100,
+                  top: 100,
+                  child: Text(
+                    "Hussen",
+                    style: TextStyle(fontSize: 20.5),
+                  )),
             ],
-          ), // column
-        ), //Container
+          ), //Stack
+        ), //container
       ), //Scaffold
     ); //MaterialApp
   }
