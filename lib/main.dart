@@ -5,31 +5,50 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int i = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Color.fromARGB(255, 32, 119, 205),
-          shape: CircleBorder(eccentricity: 0.5),
-          onPressed: () {
-            print("Hussen");
-          },
-        ), //FloatingActionButton
         appBar: AppBar(
-          title: const Text(" floatingActionButton :"),
+          title: const Text(" Statefulwidget :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
           child: Column(
-            children: [],
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    i++;
+                  });
+
+                  print(i);
+                },
+                icon: Icon(Icons.add),
+              ),
+              Text("Counter $i"),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    i--;
+                  });
+                  print(i);
+                },
+                icon: Icon(Icons.remove),
+              ),
+            ],
           ), // column
         ), //Container
       ), //Scaffold
-    ); //MaterialApp
+    );
   }
 }
