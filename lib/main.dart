@@ -12,7 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool switch_state = false;
+  String? country;
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +26,34 @@ class _MyAppState extends State<MyApp> {
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              Switch(
-                  activeColor: const Color.fromARGB(255, 25, 220, 31),
-                  inactiveThumbColor: const Color.fromARGB(255, 234, 25, 10),
-                  inactiveTrackColor: Colors.orangeAccent,
-                  activeTrackColor: const Color.fromARGB(255, 33, 89, 243),
-                  value: switch_state,
+              Text(
+                "choose your country",
+                style: TextStyle(fontSize: 20),
+              ),
+              RadioListTile(
+                  tileColor: const Color.fromARGB(255, 128, 189, 217),
+                  activeColor: const Color.fromARGB(255, 243, 72, 33),
+                  contentPadding: EdgeInsets.all(20),
+                  title: Text("SYRIA"),
+                  value: "syria",
+                  groupValue: country,
                   onChanged: (val) {
-                    print("changed");
                     setState(() {
-                      switch_state = val;
+                      country = val;
                     });
-                  }) //switch
+                    print(val);
+                  }),
+              RadioListTile(
+                  activeColor: Color.fromARGB(255, 26, 220, 159),
+                  title: Text("EGYPT"),
+                  value: "Egypt",
+                  groupValue: country,
+                  onChanged: (val) {
+                    setState(() {
+                      country = val;
+                    });
+                    print(val);
+                  }),
             ],
           ), // column
         ), //Container
