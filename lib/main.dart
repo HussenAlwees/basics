@@ -12,7 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  TextEditingController username = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,15 +24,11 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: [
               TextField(
-                controller: username,
+                maxLength: 10,
+                keyboardType: TextInputType.number,
+                maxLines: 3,
+                minLines: 1,
               ), //TextFild
-              MaterialButton(
-                  child: Text("press"),
-                  color: Colors.blueAccent,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    print(username.text);
-                  }) //MaterialButton
             ],
           ), //Column
         ), //container
