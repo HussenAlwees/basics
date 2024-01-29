@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
                     if (val.length > 10)
                       return "لا يمكن أن تكون عدد الأحرف اكبر من 10";
                   },
-                ), //TextFild
+                ), //TextFormFild
                 MaterialButton(
                   child: Text("valid"),
                   color: Colors.blueAccent,
