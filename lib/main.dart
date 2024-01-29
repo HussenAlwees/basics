@@ -11,12 +11,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  List numberOfPages = [1, 2, 3];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("pageView : "),
+          title: Text("pageView.builder : "),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
@@ -25,18 +26,19 @@ class _MyAppState extends State<MyApp> {
             children: [
               Container(
                 height: 300,
-                child: PageView(
+                child: PageView.builder(
                   reverse: false,
                   // physics: NeverScrollableScrollPhysics(),
                   onPageChanged: (val) {
                     print(val);
                   },
-                  children: [
-                    Text("Page1"),
-                    Text("page2"),
-                    // Image.asset("download.jpg", fit: BoxFit.cover),
-                    // Image.asset("flutter_image.jpg", fit: BoxFit.cover),
-                  ],
+                  itemCount: numberOfPages.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Text(
+                      "Page $index",
+                      style: TextStyle(fontSize: 30),
+                    );
+                  },
                 ),
               )
             ],
