@@ -10,66 +10,42 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
-  TabController? tabController;
-  @override
-  void initState() {
-    tabController = TabController(length: 2, vsync: this);
-    super.initState();
-  }
+class _MyAppState extends State<MyApp> {
+  int selectedindex = 0;
 
+  List<Widget> pages = [
+    Text("Home", style: TextStyle(fontSize: 20.5)),
+    Text("Search", style: TextStyle(fontSize: 20.5)),
+  ];
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("TabBar : "),
+          title: Text("BottomNavigationBar : "),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
-          bottom: TabBar(
-            controller: tabController,
-            indicatorColor: Colors.green,
-            indicatorWeight: 5,
-            labelColor: Color.fromARGB(255, 21, 149, 229),
-            labelStyle: TextStyle(fontSize: 20),
-            unselectedLabelColor: Colors.black,
-            unselectedLabelStyle: TextStyle(fontSize: 10),
-            tabs: [
-              Tab(icon: Icon(Icons.laptop), text: "Laptops"),
-              Tab(icon: Icon(Icons.mobile_friendly), text: "Mobile"),
-            ],
-          ), //TabBar
         ), //AppBar
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (val) {
+            setState(() {
+              selectedindex = val;
+            });
+          },
+          currentIndex: selectedindex,
+          backgroundColor: Colors.blue,
+          selectedItemColor: const Color.fromARGB(255, 3, 118, 7),
+          unselectedItemColor: Colors.black,
+          selectedFontSize: 20,
+          unselectedFontSize: 10,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          ],
+        ), //BottomNavigationBar
         body: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: TabBarView(
-            controller: tabController,
-            children: [
-              Column(
-                children: [
-                  Text("this is laptop page"),
-                  MaterialButton(
-                      child: Text("press to go to mobile page"),
-                      color: Colors.blue,
-                      onPressed: () {
-                        tabController!.animateTo(1);
-                      })
-                ],
-              ),
-              Column(
-                children: [
-                  Text("this is mobile page"),
-                  MaterialButton(
-                      child: Text("press to go to laptop page"),
-                      color: Colors.blue,
-                      onPressed: () {
-                        tabController!.animateTo(0);
-                      })
-                ],
-              ),
-            ],
-          ), //TabBarView
+          child: pages.elementAt(selectedindex),
         ), //container
       ), //Scaffold
-      //DefaultTabController
     ); //MaterialApp
   }
 }
