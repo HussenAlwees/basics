@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("TextFormField && Form && onSaved :"),
+          title: const Text("TextFormField && autovalidateMode :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 TextFormField(
+                  autovalidateMode: AutovalidateMode.always,
                   decoration: InputDecoration(hintText: "userName: "),
                   onSaved: (val) {
                     name = val!;
