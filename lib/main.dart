@@ -11,32 +11,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        key: scaffoldKey,
-        drawer: Drawer(),
-        body: Container(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: MaterialButton(
-                  color: const Color.fromARGB(255, 97, 118, 156),
-                  textColor: Colors.white,
-                  onPressed: () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                  child: Text("Open Drawer"),
-                ),
-              ),
-            ],
-          ), //Column
-        ), //container
-      ), //Scaffold
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("TabBar : "),
+            backgroundColor: const Color.fromARGB(255, 175, 206, 232),
+            bottom: TabBar(
+              tabs: [
+                Tab(child: Text("Laptops")),
+                Tab(child: Text("Mobiles")),
+                Tab(child: Text("Ipads")),
+              ],
+            ), //TabBar
+          ), //AppBar
+          body: Container(
+            padding: const EdgeInsets.all(20.0),
+            child: TabBarView(
+              children: [
+                Text("All Laptops are there"),
+                Text("All Mobiles are there"),
+                Text("All Ipads are there"),
+              ],
+            ), //TabBarView
+          ), //container
+        ), //Scaffold
+      ), //DefaultTabController
     ); //MaterialApp
   }
 }
