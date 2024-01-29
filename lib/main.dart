@@ -12,13 +12,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
+  String name = "";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("TextFormField && Form :"),
+          title: const Text("TextFormField && Form && onSaved :"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
@@ -28,6 +28,10 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 TextFormField(
+                  decoration: InputDecoration(hintText: "userName: "),
+                  onSaved: (val) {
+                    name = val!;
+                  },
                   validator: (val) {
                     if (val!.isEmpty) {
                       return "الحقل فارغ";
@@ -42,8 +46,8 @@ class _MyAppState extends State<MyApp> {
                   textColor: Colors.white,
                   onPressed: () {
                     if (formkey.currentState!.validate()) {
-                      //check if the form is valid or not.
-                      print("valid");
+                      formkey.currentState!.save();
+                      print("$name");
                     } else
                       print("not valid");
                   },
