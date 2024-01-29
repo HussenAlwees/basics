@@ -11,72 +11,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  String name = "";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("complete property:"),
+          leading: IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.safety_check),
+          ),
+          elevation: 20.5,
+          shadowColor: Colors.red,
+          titleTextStyle: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 1, 129, 67)),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+            Text(
+              "Hussen",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ],
+          centerTitle: true,
+          title: Text("AppBar  "),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
           padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: formkey,
-            child: Column(
-              children: [
-                TextFormField(
-                  textAlign: TextAlign.center,
-                  readOnly: true,
-                  onTap: () {
-                    print("pressed on TextField ");
-                  },
-                  autovalidateMode: AutovalidateMode.always,
-                  decoration: InputDecoration(hintText: "userName: "),
-                  onSaved: (val) {
-                    name = val!;
-                  },
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "الحقل فارغ";
-                    }
-                    if (val.length > 10)
-                      return "لا يمكن أن تكون عدد الأحرف اكبر من 10";
-                  },
-                ), //TextFormFild
-
-                TextFormField(
-                  obscureText: true,
-                  autovalidateMode: AutovalidateMode.always,
-                  decoration: InputDecoration(hintText: "password: "),
-                  onSaved: (val) {
-                    name = val!;
-                  },
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return "الحقل فارغ";
-                    }
-                    if (val.length > 10)
-                      return "لا يمكن أن تكون عدد الأحرف اكبر من 10";
-                  },
-                ), //TextFormFild
-                MaterialButton(
-                  child: Text("valid"),
-                  color: Colors.blueAccent,
-                  textColor: Colors.white,
-                  onPressed: () {
-                    if (formkey.currentState!.validate()) {
-                      formkey.currentState!.save();
-                      print("$name");
-                    } else
-                      print("not valid");
-                  },
-                ),
-              ],
-            ), //Column
-          ), //Form
+          child: Column(
+            children: [],
+          ), //Column
         ), //container
       ), //Scaffold
     ); //MaterialApp
