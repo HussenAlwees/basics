@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("TextFormField && autovalidateMode :"),
+          title: Text("complete property:"),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
         body: Container(
@@ -28,8 +28,29 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               children: [
                 TextFormField(
+                  textAlign: TextAlign.center,
+                  readOnly: true,
+                  onTap: () {
+                    print("pressed on TextField ");
+                  },
                   autovalidateMode: AutovalidateMode.always,
                   decoration: InputDecoration(hintText: "userName: "),
+                  onSaved: (val) {
+                    name = val!;
+                  },
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return "الحقل فارغ";
+                    }
+                    if (val.length > 10)
+                      return "لا يمكن أن تكون عدد الأحرف اكبر من 10";
+                  },
+                ), //TextFormFild
+
+                TextFormField(
+                  obscureText: true,
+                  autovalidateMode: AutovalidateMode.always,
+                  decoration: InputDecoration(hintText: "password: "),
                   onSaved: (val) {
                     name = val!;
                   },
