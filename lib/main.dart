@@ -16,28 +16,61 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.safety_check),
-          ),
-          elevation: 20.5,
-          shadowColor: Colors.red,
-          titleTextStyle: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 1, 129, 67)),
-          actions: [
-            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-            Text(
-              "Hussen",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-          ],
-          centerTitle: true,
-          title: Text("AppBar  "),
+          title: Text("Drawer : "),
           backgroundColor: const Color.fromARGB(255, 175, 206, 232),
         ), //AppBar
+        drawer: Drawer(
+          backgroundColor: const Color.fromARGB(255, 133, 196, 228),
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: ListView(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 100,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(60),
+                        child: Image.asset(
+                          "images/download.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListTile(
+                        title: Text("Hussen"),
+                        subtitle: Text("hussen.alwees@gmail.com"),
+                      ),
+                    ),
+                  ],
+                ),
+                ListTile(
+                  title: Text("home"),
+                  leading: Icon(Icons.home),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text("About us"),
+                  leading: Icon(Icons.help),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text("contact us"),
+                  leading: Icon(Icons.phone),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text("signOut"),
+                  leading: Icon(Icons.exit_to_app),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+        endDrawer: Drawer(),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
