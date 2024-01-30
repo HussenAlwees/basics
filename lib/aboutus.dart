@@ -30,6 +30,17 @@ class AboutUs extends StatelessWidget {
               },
               child: Text("click to go to home page"),
             ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              color: Colors.green,
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("back using pop"),
+            ),
           )
         ]));
   }
