@@ -37,6 +37,19 @@ class AboutUs extends StatelessWidget {
               color: Colors.green,
               textColor: Colors.white,
               onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => Homepage()),
+                    (route) => false);
+              },
+              child: Text("click to go to home page (pushAndRemoveUntil)"),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: MaterialButton(
+              color: Colors.green,
+              textColor: Colors.white,
+              onPressed: () {
                 Navigator.of(context).pop();
               },
               child: Text("back using pop"),
