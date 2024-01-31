@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:new_test_project/aboutus.dart';
-import 'package:new_test_project/contactus.dart';
 
+// ignore: must_be_immutable
 class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         title: Text("Home page : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
@@ -18,40 +18,40 @@ class Homepage extends StatelessWidget {
             child: MaterialButton(
               color: Colors.green,
               textColor: Colors.white,
-              child: Text("Show the dialog"),
+              child: Text("open the Image"),
               onPressed: () {
-                showDialog(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      titleTextStyle:
-                          TextStyle(fontSize: 20, color: Colors.pink),
-                      titlePadding: EdgeInsets.all(10),
-                      title: Text("Warining"),
-                      contentTextStyle:
-                          TextStyle(fontSize: 20, color: Colors.black),
-                      contentPadding: EdgeInsets.all(20),
-                      content: Text("Are youe sure? "),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text("cancel"),
+                scaffoldKey.currentState!.showBottomSheet((context) {
+                  return Container(
+                    padding: EdgeInsets.all(10),
+                    height: 200,
+                    width: 400,
+                    color: Color.fromARGB(255, 76, 90, 196),
+                    child: Column(
+                      children: [
+                        Text(
+                          "choose :",
+                          style: TextStyle(fontSize: 30, color: Colors.red),
+                        ),
+                        Container(
+                          height: 10,
                         ),
                         TextButton(
-                            onPressed: () {
-                              print("OK OK OK");
-                            },
-                            child: Text("Ok"))
+                          onPressed: () {
+                            print("pressed");
+                          },
+                          child: Text(
+                            "From Gallery ",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        Text(
+                          "From Camera ",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
                       ],
-                    );
-                  },
-                );
+                    ),
+                  );
+                });
               },
             ),
           ),
