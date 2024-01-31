@@ -8,42 +8,55 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Home page : "),
-          backgroundColor: const Color.fromARGB(255, 175, 206, 232),
-        ),
-        body: ListView(children: [
+      appBar: AppBar(
+        title: Text("Home page : "),
+        backgroundColor: const Color.fromARGB(255, 175, 206, 232),
+      ),
+      body: ListView(
+        children: [
           Center(
-            child: Text(
-              "this is home page",
-              style: TextStyle(fontSize: 30),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
             child: MaterialButton(
               color: Colors.green,
               textColor: Colors.white,
+              child: Text("Show the dialog"),
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => AboutUs()));
+                showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      titleTextStyle:
+                          TextStyle(fontSize: 20, color: Colors.pink),
+                      titlePadding: EdgeInsets.all(10),
+                      title: Text("Warining"),
+                      contentTextStyle:
+                          TextStyle(fontSize: 20, color: Colors.black),
+                      contentPadding: EdgeInsets.all(20),
+                      content: Text("Are youe sure? "),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text("cancel"),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              print("OK OK OK");
+                            },
+                            child: Text("Ok"))
+                      ],
+                    );
+                  },
+                );
               },
-              child: Text("click to go to about us page"),
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: MaterialButton(
-              color: Colors.green,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => Contact_Us()));
-              },
-              child: Text("click to go to contact us page"),
-            ),
-          )
-        ]));
+        ],
+      ),
+    );
   }
 }
