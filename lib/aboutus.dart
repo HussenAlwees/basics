@@ -25,8 +25,7 @@ class AboutUs extends StatelessWidget {
               color: Colors.green,
               textColor: Colors.white,
               onPressed: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => Homepage()));
+                Navigator.of(context).pushNamed("home");
               },
               child: Text("click to go to home page"),
             ),

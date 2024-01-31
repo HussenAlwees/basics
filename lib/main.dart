@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:new_test_project/aboutus.dart';
+import 'package:new_test_project/contactus.dart';
 import 'package:new_test_project/homepage.dart';
 
 void main() {
@@ -16,6 +18,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Homepage(),
+      routes: {
+        "home": (context) => Homepage(),
+        "about us": (context) => AboutUs(),
+        "contact us": (context) => Contact_Us(),
+      },
     ); //MaterialApp
   }
 }
