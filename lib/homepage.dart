@@ -7,35 +7,47 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepage extends State<Homepage> {
-  List<Map> username = [
-    {'name': 'Hussen', 'age': 23},
-    {'name': 'ALi', 'age': 14},
-    {'name': 'Amar', 'age': 16},
-    {'name': 'Rami', 'age': 45},
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Initial State : "),
+        title: Text("PopupMenuButton : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
+        actions: [
+          PopupMenuButton(
+              // icon: Icon(Icons.abc, color: Colors.white),
+              iconSize: 30,
+              iconColor: Colors.white,
+              color: Color.fromARGB(255, 11, 225, 140),
+              onOpened: () {
+                print("opened");
+              },
+              onCanceled: () {
+                print("canceled");
+              },
+              onSelected: (val) {
+                print(val);
+              },
+              itemBuilder: (context) => [
+                    PopupMenuItem(
+                      child: Text("one"),
+                      value: "valone",
+                      onTap: () {
+                        print("one Pressed");
+                      },
+                    ),
+                    PopupMenuItem(
+                      child: Text("two"),
+                      value: "valTwo",
+                      onTap: () {
+                        print("Two Pressed");
+                      },
+                    ),
+                  ]),
+        ],
       ),
       body: ListView(
-        children: [
-          MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("page1");
-            },
-            child: Text("Go To page one"),
-          ),
-          MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("page2");
-            },
-            child: Text("Go To page Two"),
-          ),
-        ],
+        children: [],
       ),
     );
   }
