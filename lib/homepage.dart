@@ -18,18 +18,23 @@ class _Homepage extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("List generate : "),
+        title: Text("Initial State : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: ListView(
         children: [
-          ...List.generate(
-              username.length,
-              (index) => Card(
-                    child: ListTile(
-                      title: Text(username[index]['name']),
-                    ),
-                  ))
+          MaterialButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("page1");
+            },
+            child: Text("Go To page one"),
+          ),
+          MaterialButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed("page2");
+            },
+            child: Text("Go To page Two"),
+          ),
         ],
       ),
     );
