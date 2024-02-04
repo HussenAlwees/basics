@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,13 +9,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepage extends State<Homepage> {
-  Future<List> getData() async {
-    var response =
-        await get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
-    List responsebody = json.decode(response.body);
-    return responsebody;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,29 +16,29 @@ class _Homepage extends State<Homepage> {
         title: Text("HTTP API : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
-      body: FutureBuilder<List>(
-          future: getData(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasError) {
-                return const Center(child: Text("Error"));
-              }
-              if (snapshot.hasData) {
-                return ListView.builder(
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text("${snapshot.data![index]["title"]}"),
-                        subtitle: Text("${snapshot.data![index]["body"]}"),
-                      );
-                    });
-              }
-            }
-            return const Center(child: Text("No Data"));
-          }),
+      body: ListView(
+        children: [
+          MaterialButton(
+            onPressed: () async {
+              SharedPreferences sharedPreferences =
+                  await SharedPreferences.getInstance();
+              sharedPreferences.setString("name", "hussen");
+            },
+            child: Text("Set the name"),
+            color: Colors.green,
+          ),
+          MaterialButton(
+            onPressed: () async {
+              SharedPreferences sharedPreferences =
+                  await SharedPreferences.getInstance();
+              String name = sharedPreferences.getString("name")!;
+              print("$name");
+            },
+            child: Text("show the name"),
+            color: Colors.blue,
+          )
+        ],
+      ),
     );
   }
 }
