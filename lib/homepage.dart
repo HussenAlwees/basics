@@ -11,8 +11,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepage extends State<Homepage> {
-  bool loading = false;
-  List data = [];
+  Future<List> getData() async {
+    var response =
+        await get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    List responsebody = json.decode(response.body);
+    return responsebody;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,44 +25,29 @@ class _Homepage extends State<Homepage> {
         title: Text("HTTP API : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
-      body: ListView(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 30),
-            child: MaterialButton(
-                color: Colors.green,
-                textColor: Colors.white,
-                child: Text(" HTTP request"),
-                onPressed: () async {
-                  loading = true;
-
-                  setState(() {});
-
-                  var response = await get(
-                      Uri.parse("https://jsonplaceholder.typicode.com/posts"));
-
-                  var resonsebody = jsonDecode(response.body);
-
-                  data.addAll(resonsebody);
-
-                  loading = false;
-                  setState(() {});
-                }),
-          ),
-          if (loading)
-            Center(
-              child: CircularProgressIndicator(),
-            ),
-          ...List.generate(
-              data.length,
-              (index) => Card(
-                    child: ListTile(
-                      title: Text("title : ${data[index]['title']}"),
-                      subtitle: Text("body : ${data[index]['body']}"),
-                    ),
-                  ))
-        ],
-      ),
+      body: FutureBuilder<List>(
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return const Center(child: Text("Error"));
+              }
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text("${snapshot.data![index]["title"]}"),
+                        subtitle: Text("${snapshot.data![index]["body"]}"),
+                      );
+                    });
+              }
+            }
+            return const Center(child: Text("No Data"));
+          }),
     );
   }
 }
