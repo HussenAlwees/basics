@@ -17,11 +17,9 @@ class _Homepage extends State<Homepage> {
       ),
       body: ListView(
         children: [
-          Center(
-            child: Text(
-              "New Font",
-              style: TextStyle(fontSize: 30),
-            ),
+          Text(
+            "New Font",
+            style: TextStyle(fontFamily: "ProtestRevolution", fontSize: 30),
           ),
         ],
       ),
