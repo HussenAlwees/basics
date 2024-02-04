@@ -1,5 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:http/http.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -13,7 +15,7 @@ class _Homepage extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Package : "),
+        title: Text("HTTP API : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: ListView(
@@ -23,17 +25,13 @@ class _Homepage extends State<Homepage> {
             child: MaterialButton(
                 color: Colors.green,
                 textColor: Colors.white,
-                child: Text("press to chow the dialog"),
-                onPressed: () {
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.info,
-                    animType: AnimType.rightSlide,
-                    title: 'Dialog Title',
-                    desc: 'Dialog description here.............',
-                    btnCancelOnPress: () {},
-                    btnOkOnPress: () {},
-                  )..show();
+                child: Text(" HTTP request"),
+                onPressed: () async {
+                  var response = await get(
+                      Uri.parse("https://jsonplaceholder.typicode.com/posts"));
+                  print('llv');
+                  var resonsebody = jsonDecode(response.body);
+                  print(resonsebody[0]['userId']);
                 }),
           ),
         ],
