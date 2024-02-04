@@ -11,6 +11,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _Homepage extends State<Homepage> {
+  bool loading = false;
+  List data = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +30,33 @@ class _Homepage extends State<Homepage> {
                 textColor: Colors.white,
                 child: Text(" HTTP request"),
                 onPressed: () async {
+                  loading = true;
+
+                  setState(() {});
+
                   var response = await get(
                       Uri.parse("https://jsonplaceholder.typicode.com/posts"));
-                  print('llv');
+
                   var resonsebody = jsonDecode(response.body);
-                  print(resonsebody[0]['userId']);
+
+                  data.addAll(resonsebody);
+
+                  loading = false;
+                  setState(() {});
                 }),
           ),
+          if (loading)
+            Center(
+              child: CircularProgressIndicator(),
+            ),
+          ...List.generate(
+              data.length,
+              (index) => Card(
+                    child: ListTile(
+                      title: Text("title : ${data[index]['title']}"),
+                      subtitle: Text("body : ${data[index]['body']}"),
+                    ),
+                  ))
         ],
       ),
     );
