@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GetX home page : "),
+        title: const Text("GetX state managment : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GetBuilder<HomeController>(
+            GetX<HomeController>(
               init: HomeController(),
               builder: (controller) => Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "${controller.counter}",
+                      "${controller.counter.value}",
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
