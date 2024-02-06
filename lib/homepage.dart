@@ -1,4 +1,7 @@
+import 'package:get/get.dart';
+
 import 'package:flutter/material.dart';
+import 'package:new_test_project/page1.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -12,7 +15,7 @@ class _Homepage extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("theme : "),
+        title: const Text("GetX home page : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: ListView(
@@ -20,17 +23,19 @@ class _Homepage extends State<Homepage> {
           Center(
             child: Column(
               children: [
-                Text(
-                  "bodySmall theme",
-                  style: Theme.of(context).textTheme.bodySmall,
+                MaterialButton(
+                  color: Colors.green,
+                  onPressed: () {
+                    Get.to(page1());
+                  },
+                  child: const Text("Go to page 1 using to"),
                 ),
-                Text(
-                  "bodyLarge theme",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Text(
-                  "bodyMedium theme",
-                  style: Theme.of(context).textTheme.bodyMedium,
+                MaterialButton(
+                  color: Color.fromARGB(255, 208, 228, 92),
+                  onPressed: () {
+                    Get.toNamed("/page1");
+                  },
+                  child: const Text("Go to page 1 using name"),
                 ),
               ],
             ),

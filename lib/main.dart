@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:new_test_project/homepage.dart';
+import 'package:new_test_project/page1.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,28 +17,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: "ProtestRevolution",
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue,
-        ),
-        textTheme: TextTheme(
-          bodySmall: TextStyle(
-              color: Color.fromARGB(255, 96, 226, 61),
-              fontSize: 16,
-              fontWeight: FontWeight.bold),
-          bodyLarge: TextStyle(
-              color: Color.fromARGB(255, 229, 84, 84),
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
-          bodyMedium: TextStyle(
-              color: Color.fromARGB(255, 41, 150, 205),
-              fontSize: 20,
-              fontWeight: FontWeight.bold),
-        ),
-      ),
+      getPages: [
+        GetPage(name: "/page1", page: () => page1()),
+      ],
       home: Homepage(),
     ); //MaterialApp
   }
