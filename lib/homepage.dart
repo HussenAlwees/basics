@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:new_test_project/controller/homecontroller.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  Home({super.key});
+  final HomeController controller = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GetX state managment : "),
+        title: const Text("Obx state managment : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -18,9 +18,8 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GetX<HomeController>(
-              init: HomeController(),
-              builder: (controller) => Row(
+            Obx(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
