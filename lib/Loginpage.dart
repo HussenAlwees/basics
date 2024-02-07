@@ -2,17 +2,15 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:new_test_project/main.dart';
 
-import 'package:new_test_project/screenTwo.dart';
-
 // ignore: must_be_immutable
-class Home extends StatelessWidget {
-  Home({super.key});
+class Login extends StatelessWidget {
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home page : "),
+        title: const Text("Log In page : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -22,12 +20,12 @@ class Home extends StatelessWidget {
           children: [
             Center(
               child: MaterialButton(
-                color: Colors.green,
+                color: Color.fromARGB(255, 40, 213, 222),
                 onPressed: () {
-                  sharedPref!.clear();
-                  Get.offAllNamed("/");
+                  sharedPref!.setString("id", "1");
+                  Get.offNamed("home");
                 },
-                child: Text("sign out : "),
+                child: Text("Log in : "),
               ),
             ),
           ],

@@ -6,7 +6,8 @@ import 'package:new_test_project/controller/homecontroller.dart';
 // ignore: must_be_immutable
 class ScreenTwo extends StatelessWidget {
   ScreenTwo({super.key});
-  HomeController controller = Get.put(HomeController());
+  HomeController controller = Get.put(HomeController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

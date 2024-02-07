@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_test_project/Loginpage.dart';
 import 'package:new_test_project/homepage.dart';
+import 'package:new_test_project/middleware/auth_middleware.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+SharedPreferences? sharedPref;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPref = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
+      title: "main page : ",
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      initialRoute: "/",
+      getPages: [
+        GetPage(
+            name: "/", page: () => Login(), middlewares: [AuthMiddleWare()]),
+        GetPage(name: "/home", page: () => Home()),
+      ],
     ); //MaterialApp
   }
 }
