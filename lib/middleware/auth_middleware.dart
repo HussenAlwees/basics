@@ -5,8 +5,11 @@ import 'package:new_test_project/main.dart';
 class AuthMiddleWare extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    if (sharedPref!.getString("id") != null) {
+    if (sharedPref!.getString("role") == "user") {
       return RouteSettings(name: "/home");
+    }
+    if (sharedPref!.getString("role") == "admin") {
+      return RouteSettings(name: "/admin");
     }
     return null;
   }

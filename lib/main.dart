@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_test_project/Loginpage.dart';
+import 'package:new_test_project/admin.dart';
 import 'package:new_test_project/homepage.dart';
 import 'package:new_test_project/middleware/auth_middleware.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: "/", page: () => Login(), middlewares: [AuthMiddleWare()]),
         GetPage(name: "/home", page: () => Home()),
+        GetPage(name: "/admin", page: () => Admin()),
       ],
     ); //MaterialApp
   }

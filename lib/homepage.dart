@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:new_test_project/main.dart';
 
-import 'package:new_test_project/screenTwo.dart';
-
 // ignore: must_be_immutable
 class Home extends StatelessWidget {
   Home({super.key});
@@ -12,7 +10,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home page : "),
+        title: const Text("User page : "),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
