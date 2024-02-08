@@ -6,14 +6,12 @@ import 'package:new_test_project/settingsservices.dart';
 class Home extends GetView<SettingsServices> {
   Home({super.key});
 
-  get sharedPref => null;
-
   @override
   Widget build(BuildContext context) {
     // SettingsServices c=Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("main page : "),
+        title: Text("1".tr),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -32,7 +30,7 @@ class Home extends GetView<SettingsServices> {
                 onPressed: () {
                   controller.increase();
                 },
-                child: Text("Counter increase : "),
+                child: Text("2".tr),
               ),
             ),
             Center(
@@ -41,7 +39,7 @@ class Home extends GetView<SettingsServices> {
                 onPressed: () {
                   controller.shardprefs.clear();
                 },
-                child: Text("clear shared preference : "),
+                child: Text("3".tr),
               ),
             ),
           ],
