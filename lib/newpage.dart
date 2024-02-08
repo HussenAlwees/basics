@@ -22,7 +22,7 @@ class newpage extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Text("${controller.preRoute}"),
+                  Text("${controller.currentRoute}"),
                 ],
               ),
             ),

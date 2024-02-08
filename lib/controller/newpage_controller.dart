@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
 class NewPage_controller extends GetxController {
-  String? preRoute;
+  String? currentRoute;
 
   @override
   void onInit() {
-    preRoute = Get.previousRoute;
+    currentRoute = Get.routing.current;
     super.onInit();
   }
 }

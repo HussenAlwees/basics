@@ -21,10 +21,20 @@ class Home extends StatelessWidget {
               child: MaterialButton(
                 color: Colors.green,
                 onPressed: () {
-                  Get.toNamed("newPage",
-                      arguments: {"name": "Hussen", "age": 21});
+                  Get.snackbar("title", "message",
+                      backgroundColor: Colors.green, colorText: Colors.white);
                 },
-                child: Text("Go to the New Page"),
+                child: Text("show Snackbar"),
+              ),
+            ),
+            Center(
+              child: MaterialButton(
+                color: Colors.green,
+                onPressed: () {
+                  print(Get.isSnackbarOpen);
+                  print(GetPlatform.isAndroid);
+                },
+                child: Text("check"),
               ),
             ),
           ],
