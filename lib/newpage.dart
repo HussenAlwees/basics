@@ -22,8 +22,7 @@ class newpage extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Text("${controller.name}"),
-                  Text("${controller.age}"),
+                  Text("${controller.preRoute}"),
                 ],
               ),
             ),

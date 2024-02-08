@@ -1,13 +1,11 @@
 import 'package:get/get.dart';
 
 class NewPage_controller extends GetxController {
-  String? name;
-  int? age;
+  String? preRoute;
 
   @override
   void onInit() {
-    name = Get.arguments['name'];
-    age = Get.arguments['age'];
+    preRoute = Get.previousRoute;
     super.onInit();
   }
 }
