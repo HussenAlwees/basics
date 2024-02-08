@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dialog"),
+        title: Text("Snackbar"),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -21,51 +21,27 @@ class Home extends StatelessWidget {
               child: MaterialButton(
                 color: Colors.green,
                 onPressed: () {
-                  Get.defaultDialog(
-                      title: "Dialog Title",
-                      middleText: "This is a dialog",
-                      textCancel: "Cancel",
-                      textConfirm: "OK",
-                      onConfirm: () {
-                        print("Ok");
-                      },
-                      onCancel: () {
-                        Get.back();
-                      });
+                  Get.snackbar(
+                    "Title is snackbar",
+                    "This is a message",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Color.fromARGB(255, 118, 228, 93),
+                    colorText: Colors.white,
+                    borderRadius: 20,
+                    margin: EdgeInsets.all(15),
+                    isDismissible: true,
+                    duration: Duration(seconds: 3),
+                    forwardAnimationCurve: Curves.easeOutBack,
+                    boxShadows: [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 61, 211, 206),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: Offset(3, 7))
+                    ],
+                  );
                 },
-                child: Text("Show first Dialog"),
-              ),
-            ),
-            Container(
-              height: 30,
-            ),
-            Center(
-              child: MaterialButton(
-                color: Colors.green,
-                onPressed: () {
-                  Get.defaultDialog(
-                      title: "Dialog Title",
-                      content: Column(
-                        children: [
-                          Text("Enter user name:"),
-                          TextFormField(),
-                        ],
-                      ),
-                      titleStyle: TextStyle(color: Colors.blue, fontSize: 16),
-                      actions: [
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Text("ok"),
-                        ),
-                        MaterialButton(
-                          onPressed: () {
-                            Get.back();
-                          },
-                          child: Text("cancel"),
-                        ),
-                      ]);
-                },
-                child: Text("Show second Dialog"),
+                child: Text("Show Snackbar"),
               ),
             ),
           ],
