@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Snackbar"),
+        title: Text("BottomSheet"),
         backgroundColor: const Color.fromARGB(255, 175, 206, 232),
       ),
       body: Container(
@@ -21,27 +21,20 @@ class Home extends StatelessWidget {
               child: MaterialButton(
                 color: Colors.green,
                 onPressed: () {
-                  Get.snackbar(
-                    "Title is snackbar",
-                    "This is a message",
-                    snackPosition: SnackPosition.BOTTOM,
-                    backgroundColor: Color.fromARGB(255, 118, 228, 93),
-                    colorText: Colors.white,
-                    borderRadius: 20,
-                    margin: EdgeInsets.all(15),
-                    isDismissible: true,
-                    duration: Duration(seconds: 3),
-                    forwardAnimationCurve: Curves.easeOutBack,
-                    boxShadows: [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 61, 211, 206),
-                          spreadRadius: 1,
-                          blurRadius: 5,
-                          offset: Offset(3, 7))
-                    ],
+                  Get.bottomSheet(
+                    Container(
+                      height: 200,
+                      width: 300,
+                      alignment: Alignment.center,
+                      child: Text("the text is from container"),
+                    ),
+                    backgroundColor: Color.fromARGB(255, 92, 174, 209),
+                    enterBottomSheetDuration: Duration(seconds: 2),
+                    exitBottomSheetDuration: Duration(seconds: 2),
+                    isDismissible: false,
                   );
                 },
-                child: Text("Show Snackbar"),
+                child: Text("Show BottomSheet"),
               ),
             ),
           ],
