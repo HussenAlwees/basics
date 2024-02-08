@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_test_project/homepage.dart';
+import 'package:new_test_project/newpage.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/home",
       getPages: [
         GetPage(name: "/home", page: () => Home()),
+        GetPage(name: "/newPage", page: () => newpage()),
       ],
     ); //MaterialApp
   }
