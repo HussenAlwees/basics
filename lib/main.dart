@@ -12,9 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "main page : ",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme.lightTheme,
       initialRoute: "/home",
       getPages: [
         GetPage(name: "/home", page: () => Home()),
@@ -22,4 +20,12 @@ class MyApp extends StatelessWidget {
       ],
     ); //MaterialApp
   }
+}
+
+class theme {
+  static ThemeData lightTheme =
+      ThemeData.light().copyWith(appBarTheme: AppBarTheme(color: Colors.red));
+
+  static ThemeData darkTheme =
+      ThemeData.dark().copyWith(appBarTheme: AppBarTheme(color: Colors.pink));
 }

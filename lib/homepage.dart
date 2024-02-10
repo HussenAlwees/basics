@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:new_test_project/main.dart';
 
 // ignore: must_be_immutable
 class Home extends StatelessWidget {
@@ -9,8 +10,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BottomSheet"),
-        backgroundColor: const Color.fromARGB(255, 175, 206, 232),
+        title: Text("change the Theme"),
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -20,21 +20,21 @@ class Home extends StatelessWidget {
             Center(
               child: MaterialButton(
                 color: Colors.green,
-                onPressed: () {
-                  Get.snackbar("title", "message",
-                      backgroundColor: Colors.green, colorText: Colors.white);
-                },
-                child: Text("show Snackbar"),
+                onPressed: () {},
+                child: Text(""),
               ),
             ),
             Center(
               child: MaterialButton(
                 color: Colors.green,
                 onPressed: () {
-                  print(Get.isSnackbarOpen);
-                  print(GetPlatform.isAndroid);
+                  if (Get.isDarkMode) {
+                    Get.changeTheme(theme.lightTheme);
+                  } else {
+                    Get.changeTheme(theme.darkTheme);
+                  }
                 },
-                child: Text("check"),
+                child: Text("change theme"),
               ),
             ),
           ],
