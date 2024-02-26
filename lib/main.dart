@@ -24,26 +24,28 @@ class _TestOneState extends State<TestOne> {
             title: const Text('Provider'),
             backgroundColor: const Color.fromARGB(255, 175, 206, 232),
           ),
-          body: Consumer<Model>(builder: (context, value, child) {
-            return Column(
-              children: [
-                Center(
+          body: ListView(
+            children: [
+              Consumer<Model>(builder: (context, value, child) {
+                return Center(
                   child: Text("${value.text}"),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MaterialButton(
+                );
+              }),
+              SizedBox(
+                height: 20,
+              ),
+              Consumer<Model>(builder: (context, value, child) {
+                return MaterialButton(
                   color: Colors.blue,
                   textColor: Colors.white,
                   child: Text("change the text"),
                   onPressed: () {
                     value.changetext();
                   },
-                ),
-              ],
-            );
-          }),
+                );
+              })
+            ],
+          ),
         ),
       ),
     );
