@@ -1,19 +1,15 @@
-import 'package:flutter/material.dart';
-
-class MyModel with ChangeNotifier {
-  String name = "Hussen";
-
-  void changeName(String newName) {
-    name = newName;
-
-    notifyListeners();
-  }
+Future<MyModel> someAsyncFunctionToGetMyModel() async {
+  await Future.delayed(Duration(seconds: 4));
+  print("after 4 sec");
+  return MyModel(someValue: 'new data');
 }
 
-class AnotherModel {
-  MyModel myModel;
-  AnotherModel(this.myModel);
-  void changeNameAnotherModel() {
-    myModel.changeName("Husssen Alwees");
+class MyModel {
+  String someValue = "Hello";
+  MyModel({required this.someValue});
+  Future<void> dosomething() async {
+    await Future.delayed(Duration(seconds: 2));
+    someValue = "Goodbye";
+    print(someValue);
   }
 }
