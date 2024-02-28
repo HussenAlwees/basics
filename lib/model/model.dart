@@ -1,14 +1,11 @@
-Future<MyModel> someAsyncFunctionToGetMyModel() async {
-  await Future.delayed(Duration(seconds: 4));
-  print("after 4 sec");
-  return MyModel(someValue: 'new data');
+Stream<MyModel> getStreamOfMyModel() {
+  return Stream<MyModel>.periodic(Duration(milliseconds: 500), (count) => MyModel(someValue: "Hello $count")).take(12);
 }
 
 class MyModel {
   String someValue = "Hello";
   MyModel({required this.someValue});
-  Future<void> dosomething() async {
-    await Future.delayed(Duration(seconds: 2));
+  void dosomething() {
     someValue = "Goodbye";
     print(someValue);
   }

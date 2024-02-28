@@ -1,6 +1,5 @@
 // main.dart
 import 'package:flutter/material.dart';
-
 import 'package:new_test_project/model/model.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +10,9 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   Widget build(BuildContext context) {
-    return FutureProvider<MyModel>(
+    return StreamProvider<MyModel>(
       initialData: MyModel(someValue: 'default value'),
-      create: (context) => someAsyncFunctionToGetMyModel(),
+      create: (context) => getStreamOfMyModel(),
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
