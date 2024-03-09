@@ -1,58 +1,91 @@
 // main.dart
 import 'package:flutter/material.dart';
-import 'package:new_test_project/model/model.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  @override
   Widget build(BuildContext context) {
-    return StreamProvider<MyModel>(
-      initialData: MyModel(someValue: 'default value'),
-      create: (context) => getStreamOfMyModel(),
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          debugShowMaterialGrid: false,
-          title: "My App",
-          home: Scaffold(
-            appBar: AppBar(
-              title: Text("Home page"),
-              backgroundColor: Colors.blue,
-            ), //AppBar
-            body: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(20),
-                  color: Colors.green,
-                  child: Consumer<MyModel>(
-                    builder: (context, value, child) {
-                      return MaterialButton(
-                        child: Text("get data"),
-                        onPressed: () {
-                          value.dosomething();
-                        },
-                      );
-                    },
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.all(35),
-                  color: Colors.blue,
-                  child: Consumer<MyModel>(
-                    builder: (context, value, child) {
-                      print("builder");
-                      return Text(value.someValue);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ) //MateialApp,
+    return MaterialApp(
+      title: 'Flutter WillPopScope Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home page'),
+      ),
+      body: Container(
+        color: Colors.blue,
+        child: Center(
+          child: ElevatedButton(
+            child: Text('Go to next page'),
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => NextPage()));
+            },
           ),
+        ),
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class NextPage extends StatelessWidget {
+  DateTime? _lastClicked;
+
+  NextPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        final now = DateTime.now();
+        bool allowPop = false;
+        if (_lastClicked == null || now.difference(_lastClicked!) > Duration(seconds: 1)) {
+          _lastClicked = now;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Double click back button to exit'),
+              duration: Duration(seconds: 1),
+            ),
+          );
+        } else {
+          allowPop = true;
+        }
+        return Future<bool>.value(allowPop);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("next page"),
+        ),
+        body: Container(
+          color: Colors.blue,
+          child: Center(
+            child: ElevatedButton(
+              child: Text('Go to previous'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
